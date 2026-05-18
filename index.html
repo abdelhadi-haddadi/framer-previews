@@ -344,12 +344,14 @@ input[type="color"]{
   width:100vw !important;
 }
 
-/* SIMPLE FOOTER LINKS AT BOTTOM - elegant minimal */
+/* SIMPLE FOOTER LINKS */
 .simple-footer{
   position:absolute;
+
   bottom:24px;
 
-  left:640px; /* حرك البداية */
+  /* حرك footer لليمين */
+  left:640px;
 
   z-index:999;
 
@@ -359,60 +361,84 @@ input[type="color"]{
 
   pointer-events:none;
 }
-  
 
-.simple-footer .footer-links {
-  display: inline-flex;
-  gap: 28px;
-  background: rgba(10, 10, 10, 0.65);
-  backdrop-filter: blur(12px);
-  padding: 8px 24px;
-  border-radius: 60px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  pointer-events: auto;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+.simple-footer .footer-links{
+  display:inline-flex;
+  align-items:center;
+
+  gap:28px;
+
+  background:rgba(10,10,10,0.65);
+  backdrop-filter:blur(12px);
+
+  padding:8px 24px;
+
+  border-radius:60px;
+
+  border:1px solid rgba(255,255,255,0.12);
+
+  pointer-events:auto;
+
+  box-shadow:
+    0 2px 12px rgba(0,0,0,0.2);
 }
 
-.simple-footer a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  transition: all 0.2s ease;
-  font-weight: 450;
-  font-size: 12px;
+.simple-footer a{
+  color:rgba(255,255,255,0.8);
+
+  text-decoration:none;
+
+  transition:all .2s ease;
+
+  font-weight:450;
+  font-size:12px;
 }
 
-.simple-footer a:hover {
-  color: white;
-  text-shadow: 0 0 6px rgba(255,255,255,0.3);
+.simple-footer a:hover{
+  color:white;
+
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.3);
 }
 
-.separator {
-  color: rgba(255,255,255,0.3);
-  font-size: 12px;
+.footer-tagline{
+  color:rgba(255,255,255,0.55);
+
+  font-size:12px;
 }
 
+.separator{
+  color:rgba(255,255,255,0.3);
+
+  font-size:12px;
+}
+
+/* RESPONSIVE */
 @media(max-width:1500px){
+
   .title{
     font-size:85px;
   }
+
   .desktopWrap{
     width:600px;
     right:220px;
   }
+
   .phone{
     right:180px;
   }
-  .simple-footer .footer-links {
-    padding: 6px 20px;
-    gap: 20px;
-  }
+
   .simple-footer{
-  position:absolute;
-  bottom:24px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:999;
-}
+    left:560px;
+    bottom:20px;
+  }
+
+  .simple-footer .footer-links{
+    gap:20px;
+    padding:7px 20px;
+  }
+
 }
 </style>
 </head>
