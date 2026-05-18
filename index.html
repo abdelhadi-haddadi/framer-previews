@@ -344,99 +344,77 @@ input[type="color"]{
   width:100vw !important;
 }
 
-/* SIMPLE FOOTER LINKS */
+
+
+/* SIMPLE FOOTER */
 .simple-footer{
   position:absolute;
 
-  bottom:24px;
+  bottom:28px;
 
-  /* حرك footer لليمين */
-  left:640px;
+  /* بداية footer */
+  left:520px;
 
-  z-index:999;
-
-  font-family:'Inter',sans-serif;
-  font-size:12px;
-  letter-spacing:.5px;
+  z-index:9999;
 
   pointer-events:none;
 }
 
 .simple-footer .footer-links{
-  display:inline-flex;
+  display:flex;
   align-items:center;
 
-  gap:28px;
+  gap:22px;
 
-  background:rgba(10,10,10,0.65);
-  backdrop-filter:blur(12px);
+  width:max-content;
 
-  padding:8px 24px;
+  padding:8px 22px;
 
-  border-radius:60px;
+  border-radius:999px;
 
-  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(10,10,10,0.55);
 
-  pointer-events:auto;
+  backdrop-filter:blur(14px);
+
+  border:1px solid rgba(255,255,255,0.08);
 
   box-shadow:
-    0 2px 12px rgba(0,0,0,0.2);
+    0 8px 30px rgba(0,0,0,0.28);
+
+  pointer-events:auto;
 }
 
-.simple-footer a{
-  color:rgba(255,255,255,0.8);
+.simple-footer a,
+.simple-footer span{
+  color:rgba(255,255,255,0.72);
 
   text-decoration:none;
 
-  transition:all .2s ease;
-
-  font-weight:450;
   font-size:12px;
+  font-weight:500;
+
+  white-space:nowrap;
 }
 
 .simple-footer a:hover{
   color:white;
-
-  text-shadow:
-    0 0 6px rgba(255,255,255,0.3);
-}
-
-.footer-tagline{
-  color:rgba(255,255,255,0.55);
-
-  font-size:12px;
 }
 
 .separator{
-  color:rgba(255,255,255,0.3);
-
-  font-size:12px;
+  opacity:.3;
 }
 
-/* RESPONSIVE */
-@media(max-width:1500px){
-
-  .title{
-    font-size:85px;
-  }
-
-  .desktopWrap{
-    width:600px;
-    right:220px;
-  }
-
-  .phone{
-    right:180px;
-  }
+/* responsive */
+@media (max-width:1500px){
 
   .simple-footer{
-    left:560px;
-    bottom:20px;
+    left:470px;
+    bottom:22px;
   }
 
   .simple-footer .footer-links{
-    gap:20px;
-    padding:7px 20px;
+    gap:18px;
+    padding:7px 18px;
   }
 
 }
@@ -541,7 +519,7 @@ Premium Craftsmanship</textarea>
       <img id="sidePreview" alt="side visual">
     </div>
 <!-- SIMPLE FOOTER LINKS AT BOTTOM (clean, elegant) -->
-<div class="simple-footer">
+<div class="simple-footer"  >
   <div class="footer-links">
     <a href="https://inspir.dev" target="_blank">@inspir.dev</a>
     
