@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Editorial Studio — Cinema Capture | Framer-Class Export</title>
+<title>Editorial Studio — Framer-Style Layers | Full Edit + Capture Mode</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
   * {
@@ -20,10 +20,9 @@
     overflow: hidden;
     background: #050505;
     font-family: 'Inter', sans-serif;
-    transition: background 0.2s ease;
   }
 
-  /* MAIN SHOWCASE — permanent artwork composition */
+  /* MAIN SHOWCASE */
   .showcase {
     position: relative;
     width: 100vw;
@@ -31,10 +30,8 @@
     overflow: hidden;
     background: radial-gradient(circle at top left, rgba(255,255,255,.06), transparent 35%),
                 linear-gradient(180deg, hsl(206,4%,24%) 0%, hsl(206,4%,8%) 100%);
-    will-change: transform;
   }
 
-  /* grain noise overlay — part of composition */
   .showcase::before {
     content: "";
     position: absolute;
@@ -46,7 +43,6 @@
     z-index: 1;
   }
 
-  /* decorative circles — permanent */
   .circle {
     position: absolute;
     border: 1px solid rgba(255,255,255,.22);
@@ -57,7 +53,6 @@
   .c1 { width: 720px; height: 720px; left: 220px; top: -420px; }
   .c2 { width: 560px; height: 560px; left: 120px; bottom: -260px; }
 
-  /* LEFT editorial column */
   .left {
     position: absolute;
     left: 70px;
@@ -76,11 +71,21 @@
     backdrop-filter: blur(4px);
     background: rgba(0,0,0,0.2);
     border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
   }
-  .logoBox svg {
+  .logoBox:hover {
+    border-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.02);
+  }
+  .logoBox img, .logoBox svg {
     width: 44px;
     height: 44px;
+    display: block;
   }
+  
   .title {
     color: white;
     font-family: "Cormorant Garamond", serif;
@@ -89,6 +94,15 @@
     font-weight: 300;
     letter-spacing: -3px;
     margin-bottom: 70px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    width: 100%;
+  }
+  .title:hover {
+    text-shadow: 0 0 20px rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
   }
   .features {
     display: flex;
@@ -103,9 +117,15 @@
     font-weight: 300;
     border-bottom: 1px solid rgba(255,255,255,.7);
     padding-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .feature:hover {
+    border-bottom-color: rgba(255,255,255,1);
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+    transform: translateX(4px);
   }
 
-  /* desktop screen mockup */
   .desktopWrap {
     position: absolute;
     right: 320px;
@@ -121,13 +141,18 @@
     border: 1px solid rgba(255,255,255,.22);
     box-shadow: 0 0 0 1px rgba(255,255,255,.05), 0 80px 120px rgba(0,0,0,.65);
     background: #1a1a2e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .desktopFrame:hover {
+    border-color: rgba(255,255,255,0.5);
+    transform: scale(1.01);
   }
   .desktopFrame img {
     width: 100%;
     display: block;
   }
 
-  /* right cropped element — art direction */
   .sideCrop {
     position: absolute;
     right: -120px;
@@ -136,13 +161,18 @@
     border-left: 1px solid rgba(255,255,255,.08);
     overflow: hidden;
     opacity: .78;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .sideCrop:hover {
+    opacity: 1;
+    border-left-color: rgba(255,255,255,0.3);
   }
   .sideCrop img {
     width: 100%;
     display: block;
   }
 
-  /* phone mockup */
   .phone {
     position: absolute;
     right: 250px;
@@ -154,6 +184,11 @@
     background: linear-gradient(145deg,#2b2b2b,#090909);
     box-shadow: 0 30px 80px rgba(0,0,0,.65), inset 0 0 0 1px rgba(255,255,255,.18);
     z-index: 10;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .phone:hover {
+    transform: scale(1.02);
   }
   .phone::before {
     content: "";
@@ -180,9 +215,9 @@
     height: auto;
     object-fit: cover;
     object-position: top center;
+    display: block;
   }
 
-  /* ambient glow — composition part */
   .glow {
     position: absolute;
     width: 700px;
@@ -195,9 +230,7 @@
     z-index: 0;
   }
 
-  /* ========== EDITOR OVERLAY SYSTEM — class-based only ========== */
-  
-  /* base editor layers: always present, but visibility controlled via body classes */
+  /* ========== EDITOR OVERLAY ========== */
   .editor-overlay {
     position: fixed;
     top: 0;
@@ -217,7 +250,6 @@
     gap: 12px;
     pointer-events: auto;
     z-index: 2100;
-    transition: opacity 0.2s, visibility 0.2s;
   }
   
   .editor-btn {
@@ -235,34 +267,24 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    letter-spacing: 0.3px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
-  
   .editor-btn:hover {
     background: rgba(40, 40, 48, 0.95);
     border-color: rgba(255,255,255,0.5);
     transform: scale(0.98);
   }
-  
   .close-editor {
     background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(12px);
     width: 42px;
     height: 42px;
     border-radius: 42px;
     padding: 0;
     justify-content: center;
     font-size: 18px;
-    font-weight: 300;
   }
-  
-  .export-btn {
-    background: rgba(10, 10, 15, 0.85);
-    border-color: rgba(255,255,255,0.35);
-  }
-  
-  /* outline guides — composition framing */
+  .export-btn { background: rgba(10, 10, 15, 0.85); }
+
   .outline-guides {
     position: fixed;
     top: 0;
@@ -271,16 +293,12 @@
     height: 100%;
     pointer-events: none;
     z-index: 1990;
-    transition: opacity 0.2s, visibility 0.2s;
   }
-  
   .guide-rect {
     position: absolute;
     border: 1px dashed rgba(255, 255, 255, 0.45);
     box-shadow: 0 0 0 9999px rgba(0,0,0,0.12);
-    transition: all 0.1s ease;
   }
-  
   .guide-rect::after {
     content: "";
     position: absolute;
@@ -294,13 +312,11 @@
     border-radius: 12px;
     backdrop-filter: blur(4px);
     white-space: nowrap;
-    letter-spacing: 0.5px;
   }
   .guide-1::after { content: "EDITORIAL ZONE"; }
   .guide-2::after { content: "DESKTOP MOCKUP"; }
   .guide-3::after { content: "MOBILE PREVIEW"; }
   
-  /* floating sidebar editor — modern toolset */
   .sidebar-editor {
     position: fixed;
     left: 24px;
@@ -316,9 +332,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     pointer-events: auto;
     z-index: 2100;
-    transition: opacity 0.2s, visibility 0.2s;
   }
-  
   .tool-item {
     width: 44px;
     height: 44px;
@@ -334,14 +348,12 @@
     transition: 0.15s;
     border: 1px solid rgba(255,255,255,0.1);
   }
-  
   .tool-item:hover {
     background: rgba(80,80,95,0.9);
     border-color: rgba(255,255,255,0.5);
     transform: scale(1.02);
   }
-  
-  /* REACTIVE BUTTON (edit mode re-activation) — also controlled via class */
+
   .reactive-edit-btn {
     position: fixed;
     bottom: 24px;
@@ -359,17 +371,164 @@
     z-index: 10000;
     pointer-events: auto;
     box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  }
+
+  /* ========== FRAMER-STYLE LAYERS MODAL ========== */
+  .layers-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 100000;
+    pointer-events: auto;
+    animation: fadeIn 0.2s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .layers-modal {
+    width: 360px;
+    height: 100%;
+    background: rgba(18, 18, 22, 0.95);
+    backdrop-filter: blur(24px);
+    border-left: 1px solid rgba(255,255,255,0.15);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.25s ease;
+  }
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  .layers-header {
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .layers-header h2 {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .close-modal {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
     transition: 0.2s;
   }
-  
-  .reactive-edit-btn:hover {
-    background: rgba(80,80,100,0.95);
-    transform: scale(1.02);
+  .close-modal:hover {
+    background: rgba(255,255,255,0.2);
   }
-  
-  /* ========== CLASS-BASED VISIBILITY ARCHITECTURE ========== */
-  
-  /* EDITOR-HIDDEN STATE: hides UI but keeps layout & positioning intact */
+  .layers-search {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .layers-search input {
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: white;
+    font-size: 13px;
+    outline: none;
+  }
+  .layers-search input:focus {
+    border-color: rgba(255,255,255,0.4);
+  }
+  .layers-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 12px;
+  }
+  .layer-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 12px;
+    margin: 4px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .layer-item:hover {
+    background: rgba(255,255,255,0.08);
+    color: white;
+  }
+  .layer-item.selected {
+    background: rgba(80,80,120,0.4);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+  }
+  .layer-icon {
+    width: 28px;
+    font-size: 16px;
+    text-align: center;
+  }
+  .layer-name {
+    flex: 1;
+  }
+  .layer-badge {
+    font-size: 10px;
+    background: rgba(255,255,255,0.15);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-family: monospace;
+  }
+  .layer-actions {
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .layer-item:hover .layer-actions {
+    opacity: 1;
+  }
+  .layer-action {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.1s;
+  }
+  .layer-action:hover {
+    background: rgba(255,255,255,0.25);
+  }
+  .layers-footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+  }
+
+  /* class-based visibility */
   body.editor-hidden .editor-overlay,
   body.editor-hidden .sidebar-editor,
   body.editor-hidden .outline-guides,
@@ -378,8 +537,6 @@
     visibility: hidden;
     pointer-events: none;
   }
-  
-  /* CAPTURE MODE: ultimate clean state — everything UI disappears, composition untouched */
   body.capture-mode .editor-overlay,
   body.capture-mode .sidebar-editor,
   body.capture-mode .outline-guides,
@@ -389,22 +546,8 @@
     visibility: hidden !important;
     pointer-events: none !important;
   }
-  
-  /* ensure no layout shift — all elements keep dimensions */
-  body.capture-mode .editor-overlay,
-  body.capture-mode .sidebar-editor,
-  body.capture-mode .outline-guides {
-    display: block !important;   /* keep in flow, just invisible */
-    position: fixed !important;
-  }
-  
-  /* optional: disable cursor interactions globally in capture mode */
-  body.capture-mode,
-  body.capture-mode * {
-    cursor: default !important;
-  }
-  
-  /* RESPONSIVENESS */
+  body.capture-mode, body.capture-mode * { cursor: default !important; }
+
   @media(max-width:1600px) {
     .title { font-size: 90px; }
     .desktopWrap { width: 650px; right: 260px; }
@@ -413,14 +556,12 @@
 </head>
 <body>
 
-<!-- MAIN ARTWORK COMPOSITION (unchanged, premium) -->
 <section class="showcase">
   <div class="glow"></div>
   <div class="circle c1"></div>
   <div class="circle c2"></div>
-
   <div class="left">
-    <div class="logoBox">
+    <div class="logoBox" id="logoBox">
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="45" stroke="white" stroke-width="1.5" fill="none"/>
         <path d="M35 50 L45 50 L45 35 L35 35 Z" fill="white" opacity="0.9"/>
@@ -429,46 +570,40 @@
         <circle cx="50" cy="64" r="6" fill="#050505"/>
       </svg>
     </div>
-    <h1 class="title">[headphones]</h1>
+    <h1 class="title" id="mainTitle">[headphones]</h1>
     <div class="features">
-      <div class="feature">Modern UI</div>
-      <div class="feature">Lightning Fast</div>
-      <div class="feature">High Performance</div>
+      <div class="feature" id="feature1">Modern UI</div>
+      <div class="feature" id="feature2">Lightning Fast</div>
+      <div class="feature" id="feature3">High Performance</div>
     </div>
   </div>
-
   <div class="desktopWrap">
-    <div class="desktopFrame">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%231a1a2e'/%3E%3Crect x='50' y='80' width='300' height='40' rx='6' fill='%232d2d44'/%3E%3Crect x='50' y='140' width='500' height='280' rx='12' fill='%2322223a'/%3E%3Ccircle cx='180' cy='300' r='60' fill='%23333355'/%3E%3Crect x='280' y='260' width='180' height='12' rx='4' fill='%23444466'/%3E%3Crect x='280' y='290' width='140' height='12' rx='4' fill='%23444466'/%3E%3Crect x='280' y='320' width='200' height='12' rx='4' fill='%23444466'/%3E%3Cpath d='M520 220 L580 280 L520 340' stroke='%23555577' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="desktop preview">
+    <div class="desktopFrame" id="desktopFrame">
+      <img id="desktopImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%231a1a2e'/%3E%3Crect x='50' y='80' width='300' height='40' rx='6' fill='%232d2d44'/%3E%3Crect x='50' y='140' width='500' height='280' rx='12' fill='%2322223a'/%3E%3Ccircle cx='180' cy='300' r='60' fill='%23333355'/%3E%3Crect x='280' y='260' width='180' height='12' rx='4' fill='%23444466'/%3E%3Crect x='280' y='290' width='140' height='12' rx='4' fill='%23444466'/%3E%3Crect x='280' y='320' width='200' height='12' rx='4' fill='%23444466'/%3E%3Cpath d='M520 220 L580 280 L520 340' stroke='%23555577' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="desktop">
     </div>
   </div>
-
-  <div class="sideCrop">
-    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Crect width='600' height='800' fill='%231e1e2f'/%3E%3Ccircle cx='300' cy='300' r='120' fill='%232a2a4a' opacity='0.6'/%3E%3Cpath d='M200 500 L400 500 L350 650 L250 650 Z' fill='%23333355' opacity='0.5'/%3E%3C/svg%3E" alt="art direction">
+  <div class="sideCrop" id="sideCrop">
+    <img id="sideCropImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Crect width='600' height='800' fill='%231e1e2f'/%3E%3Ccircle cx='300' cy='300' r='120' fill='%232a2a4a' opacity='0.6'/%3E%3Cpath d='M200 500 L400 500 L350 650 L250 650 Z' fill='%23333355' opacity='0.5'/%3E%3C/svg%3E" alt="side">
   </div>
-
-  <div class="phone">
+  <div class="phone" id="phoneMockup">
     <div class="phoneScreen">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 500'%3E%3Crect width='250' height='500' fill='%23111122'/%3E%3Crect x='20' y='40' width='210' height='30' rx='6' fill='%232a2a44'/%3E%3Crect x='20' y='90' width='210' height='200' rx='12' fill='%2322223a'/%3E%3Ccircle cx='60' cy='190' r='35' fill='%23333355'/%3E%3Crect x='110' y='175' width='100' height='10' rx='3' fill='%23444466'/%3E%3Crect x='110' y='195' width='80' height='10' rx='3' fill='%23444466'/%3E%3Crect x='20' y='310' width='210' height='80' rx='12' fill='%2322223a'/%3E%3C/svg%3E" alt="mobile ui">
+      <img id="phoneImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 500'%3E%3Crect width='250' height='500' fill='%23111122'/%3E%3Crect x='20' y='40' width='210' height='30' rx='6' fill='%232a2a44'/%3E%3Crect x='20' y='90' width='210' height='200' rx='12' fill='%2322223a'/%3E%3Ccircle cx='60' cy='190' r='35' fill='%23333355'/%3E%3Crect x='110' y='175' width='100' height='10' rx='3' fill='%23444466'/%3E%3Crect x='110' y='195' width='80' height='10' rx='3' fill='%23444466'/%3E%3Crect x='20' y='310' width='210' height='80' rx='12' fill='%2322223a'/%3E%3C/svg%3E" alt="mobile">
     </div>
   </div>
 </section>
 
-<!-- EDITOR UI (class-based visibility only) -->
 <div class="editor-overlay">
   <div class="controls-panel">
     <button class="editor-btn export-btn" id="exportCaptureBtn">📸 Export PNG</button>
     <button class="editor-btn close-editor" id="closeEditorBtn">✕</button>
   </div>
 </div>
-
 <div class="sidebar-editor" id="sidebarEditor">
   <div class="tool-item" title="Move">🎯</div>
   <div class="tool-item" title="Frame">📐</div>
   <div class="tool-item" title="Export">⬇️</div>
-  <div class="tool-item" title="Layers">📁</div>
+  <div class="tool-item" id="layersToolBtn" title="Layers">📁</div>
 </div>
-
 <div class="outline-guides" id="outlineGuides">
   <div class="guide-rect guide-1" id="guide1"></div>
   <div class="guide-rect guide-2" id="guide2"></div>
@@ -476,228 +611,303 @@
 </div>
 
 <script>
-  (function() {
-    // ---------- CLASS-BASED STATE MANAGEMENT ----------
-    // NO inline style manipulation. Only toggling body classes.
-    let isExporting = false;
-    let editorActive = true;       // true = editing mode (UI visible)
-    
-    // DOM elements
-    const bodyEl = document.body;
-    const exportBtn = document.getElementById('exportCaptureBtn');
-    const closeEditorBtn = document.getElementById('closeEditorBtn');
-    const sidebar = document.getElementById('sidebarEditor');
-    const outlines = document.getElementById('outlineGuides');
-    
-    // Helper to remove any existing reactive button (DOM element)
-    function removeReactiveButton() {
-      const existing = document.querySelector('.reactive-edit-btn');
-      if (existing) existing.remove();
-    }
-    
-    // Create reactive button to re-enter editing mode (visible only when editor-hidden)
-    function createReactiveButton() {
-      if (document.querySelector('.reactive-edit-btn')) return;
-      const btn = document.createElement('div');
-      btn.className = 'reactive-edit-btn';
-      btn.textContent = '✎ Edit Mode';
-      btn.addEventListener('click', () => {
-        // Re-enter editing mode: remove editor-hidden class
-        bodyEl.classList.remove('editor-hidden');
-        editorActive = true;
-        removeReactiveButton();
-        // Ensure guide positions are accurate after re-enable
-        setTimeout(updateGuidePositions, 60);
-      });
-      document.body.appendChild(btn);
-    }
-    
-    // HIDE EDITOR UI gracefully (using .editor-hidden class)
-    function hideEditorUI() {
-      if (!editorActive) return;
-      bodyEl.classList.add('editor-hidden');
-      editorActive = false;
-      // Create reactive button so user can return
-      createReactiveButton();
-    }
-    
-    // SHOW EDITOR UI (full editing mode)
-    function showEditorUI() {
-      bodyEl.classList.remove('editor-hidden');
-      editorActive = true;
-      removeReactiveButton();
-      // ensure guides refresh
-      setTimeout(updateGuidePositions, 50);
-    }
-    
-    // CLOSE / X button: switch to editor-hidden state
-    if (closeEditorBtn) {
-      closeEditorBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        hideEditorUI();
-      });
-    }
-    
-    // ---------- GUIDE POSITIONING (dynamic, non-disruptive) ----------
-    function updateGuidePositions() {
-      const leftArea = document.querySelector('.left');
-      const desktopWrap = document.querySelector('.desktopWrap');
-      const phoneDiv = document.querySelector('.phone');
+(function() {
+  // ========== LAYERS DATA (Framer-style) ==========
+  const layersData = [
+    { id: 'logoBox', name: 'Logo / Brand', icon: '🎧', type: 'image', elementId: 'logoBox' },
+    { id: 'mainTitle', name: 'Headline Text', icon: 'T', type: 'text', elementId: 'mainTitle' },
+    { id: 'feature1', name: 'Feature: Modern UI', icon: '✨', type: 'text', elementId: 'feature1' },
+    { id: 'feature2', name: 'Feature: Lightning Fast', icon: '⚡', type: 'text', elementId: 'feature2' },
+    { id: 'feature3', name: 'Feature: High Performance', icon: '🎯', type: 'text', elementId: 'feature3' },
+    { id: 'desktopImage', name: 'Desktop Mockup', icon: '🖥️', type: 'image', elementId: 'desktopImage' },
+    { id: 'sideCropImage', name: 'Art Direction (Side)', icon: '🎨', type: 'image', elementId: 'sideCropImage' },
+    { id: 'phoneImage', name: 'Mobile Preview', icon: '📱', type: 'image', elementId: 'phoneImage' }
+  ];
+
+  let currentSelectedLayer = null;
+
+  function openLayersModal() {
+    const modal = document.createElement('div');
+    modal.className = 'layers-modal-overlay';
+    modal.innerHTML = `
+      <div class="layers-modal">
+        <div class="layers-header">
+          <h2>📁 Layers <span style="font-size:11px; font-weight:400;">Framer-style</span></h2>
+          <button class="close-modal" id="closeLayersModal">✕</button>
+        </div>
+        <div class="layers-search">
+          <input type="text" id="layersSearch" placeholder="Filter layers...">
+        </div>
+        <div class="layers-list" id="layersList"></div>
+        <div class="layers-footer">
+          ${layersData.length} elements • Click to select • ✏️ to edit
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    function renderLayers(searchTerm = '') {
+      const container = modal.querySelector('#layersList');
+      const filtered = layersData.filter(layer => 
+        layer.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      container.innerHTML = filtered.map(layer => `
+        <div class="layer-item ${currentSelectedLayer === layer.id ? 'selected' : ''}" data-layer-id="${layer.id}">
+          <div class="layer-icon">${layer.icon}</div>
+          <div class="layer-name">${layer.name}</div>
+          <div class="layer-badge">${layer.type}</div>
+          <div class="layer-actions">
+            <button class="layer-action edit-layer" data-id="${layer.id}" title="Edit">✏️</button>
+            <button class="layer-action focus-layer" data-id="${layer.id}" title="Focus">🔍</button>
+          </div>
+        </div>
+      `).join('');
       
-      const guide1 = document.getElementById('guide1');
-      const guide2 = document.getElementById('guide2');
-      const guide3 = document.getElementById('guide3');
-      
-      if (leftArea && guide1) {
-        const rect = leftArea.getBoundingClientRect();
-        guide1.style.top = rect.top + 'px';
-        guide1.style.left = rect.left + 'px';
-        guide1.style.width = rect.width + 'px';
-        guide1.style.height = Math.min(rect.height, 420) + 'px';
-      }
-      if (desktopWrap && guide2) {
-        const rect = desktopWrap.getBoundingClientRect();
-        guide2.style.top = rect.top + 'px';
-        guide2.style.left = rect.left + 'px';
-        guide2.style.width = rect.width + 'px';
-        guide2.style.height = rect.height + 'px';
-      }
-      if (phoneDiv && guide3) {
-        const rect = phoneDiv.getBoundingClientRect();
-        guide3.style.top = rect.top + 'px';
-        guide3.style.left = rect.left + 'px';
-        guide3.style.width = rect.width + 'px';
-        guide3.style.height = rect.height + 'px';
-      }
-    }
-    
-    // ---------- CAPTURE MODE (class-based, no inline style) ----------
-    async function loadHtml2Canvas() {
-      return new Promise((resolve, reject) => {
-        if (window.html2canvas) {
-          resolve(window.html2canvas);
-          return;
-        }
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-        script.onload = () => {
-          if (window.html2canvas) resolve(window.html2canvas);
-          else reject(new Error('html2canvas failed'));
-        };
-        script.onerror = () => reject(new Error('html2canvas load error'));
-        document.head.appendChild(script);
-      });
-    }
-    
-    async function performPremiumExport() {
-      if (isExporting) return;
-      isExporting = true;
-      
-      // Remove any reactive button temporarily to avoid visual glitch
-      removeReactiveButton();
-      
-      // STEP 1: Activate capture-mode (pure class, hides all UI via CSS)
-      bodyEl.classList.add('capture-mode');
-      
-      // IMPORTANT: ensure any lingering editor-hidden is overridden by capture-mode priority
-      bodyEl.classList.remove('editor-hidden');
-      
-      // give browser time to apply CSS transitions & repaint (crucial for stable export)
-      await new Promise(resolve => setTimeout(resolve, 180));
-      
-      try {
-        await loadHtml2Canvas();
-        const showcaseElement = document.querySelector('.showcase');
-        if (!showcaseElement) throw new Error('Showcase missing');
+      // Add event listeners to layer items
+      container.querySelectorAll('.layer-item').forEach(item => {
+        const layerId = item.dataset.layerId;
+        const layer = layersData.find(l => l.id === layerId);
         
-        const canvas = await html2canvas(showcaseElement, {
-          scale: 2.8,
-          backgroundColor: '#050505',
-          useCORS: true,
-          logging: false,
-          allowTaint: false,
-          windowWidth: showcaseElement.scrollWidth,
-          windowHeight: showcaseElement.scrollHeight
+        item.addEventListener('click', (e) => {
+          if (!e.target.classList.contains('layer-action')) {
+            selectLayer(layerId);
+            renderLayers(modal.querySelector('#layersSearch').value);
+          }
         });
         
-        // STEP 2: remove capture-mode, restore editor state (but keep UI if previously active)
-        bodyEl.classList.remove('capture-mode');
-        
-        // restore previous editor visibility: if editorActive true -> show, else keep hidden
-        if (editorActive) {
-          bodyEl.classList.remove('editor-hidden');
-        } else {
-          bodyEl.classList.add('editor-hidden');
-          // reactive button was removed earlier; recreate if needed
-          createReactiveButton();
+        const editBtn = item.querySelector('.edit-layer');
+        if (editBtn) {
+          editBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            triggerEditForLayer(layer);
+            modal.remove();
+          });
         }
         
-        // Download PNG
-        const link = document.createElement('a');
-        const timestamp = new Date().toISOString().slice(0,19).replace(/:/g, '-');
-        link.download = `headphones_editorial_${timestamp}.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-        
-      } catch (err) {
-        console.error('Export error:', err);
-        bodyEl.classList.remove('capture-mode');
-        if (editorActive) {
-          bodyEl.classList.remove('editor-hidden');
-        } else {
-          bodyEl.classList.add('editor-hidden');
-          createReactiveButton();
+        const focusBtn = item.querySelector('.focus-layer');
+        if (focusBtn) {
+          focusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            focusOnLayer(layer);
+            modal.remove();
+          });
         }
-        alert('Unable to export. Check console for details.');
-      } finally {
-        isExporting = false;
-      }
-    }
-    
-    // Attach export button event
-    if (exportBtn) {
-      exportBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        performPremiumExport();
       });
     }
     
-    // Toolbar interactions: Frame guide refresh & quick export
-    const toolItems = document.querySelectorAll('.tool-item');
-    toolItems.forEach(item => {
-      item.addEventListener('click', () => {
-        if (item.title === 'Frame') {
-          updateGuidePositions();
-        }
-        if (item.title === 'Export') {
-          performPremiumExport();
-        }
-      });
-    });
-    
-    // resize observer to keep guide rectangles updated without breaking layout
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      if (editorActive) {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          updateGuidePositions();
-        }, 80);
+    function selectLayer(layerId) {
+      currentSelectedLayer = layerId;
+      const element = document.getElementById(layerId);
+      if (element) {
+        element.style.outline = '2px solid rgba(255,255,255,0.5)';
+        element.style.outlineOffset = '4px';
+        setTimeout(() => {
+          if (currentSelectedLayer === layerId) {
+            element.style.outline = '';
+          }
+        }, 1500);
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
+    }
+    
+    function triggerEditForLayer(layer) {
+      const element = document.getElementById(layer.elementId);
+      if (!element) return;
+      
+      if (layer.type === 'text') {
+        makeTextEditable(element, element.textContent);
+      } else if (layer.type === 'image') {
+        if (element.tagName === 'IMG') {
+          makeImageEditable(element, element.src);
+        } else if (layer.id === 'logoBox') {
+          makeLogoEditable(element);
+        }
+      } else if (layer.id === 'logoBox') {
+        makeLogoEditable(element);
+      }
+    }
+    
+    function focusOnLayer(layer) {
+      const element = document.getElementById(layer.elementId);
+      if (element) {
+        element.style.outline = '3px solid rgba(100,150,255,0.8)';
+        element.style.outlineOffset = '6px';
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+          element.style.outline = '';
+        }, 2000);
+      }
+    }
+    
+    const searchInput = modal.querySelector('#layersSearch');
+    searchInput.addEventListener('input', (e) => renderLayers(e.target.value));
+    
+    const closeBtn = modal.querySelector('#closeLayersModal');
+    closeBtn.addEventListener('click', () => modal.remove());
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+    
+    renderLayers('');
+  }
+  
+  // ========== EDITING FUNCTIONS ==========
+  function makeTextEditable(element, originalText) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = originalText;
+    input.className = 'editable-input';
+    const style = window.getComputedStyle(element);
+    input.style.fontFamily = style.fontFamily;
+    input.style.fontSize = style.fontSize;
+    input.style.fontWeight = style.fontWeight;
+    input.style.background = 'rgba(0,0,0,0.85)';
+    input.style.border = '2px solid rgba(255,255,255,0.6)';
+    input.style.color = 'white';
+    input.style.borderRadius = '12px';
+    input.style.padding = '8px 12px';
+    input.style.outline = 'none';
+    input.style.width = Math.max(element.offsetWidth, 180) + 'px';
+    
+    const parent = element.parentNode;
+    parent.replaceChild(input, element);
+    input.focus();
+    input.select();
+    
+    function save() {
+      const newValue = input.value.trim() || originalText;
+      const newElement = document.createElement(element.tagName);
+      newElement.className = element.className;
+      newElement.id = element.id;
+      newElement.textContent = newValue;
+      newElement.style.cssText = element.style.cssText;
+      newElement.addEventListener('click', (e) => {
+        e.stopPropagation();
+        makeTextEditable(newElement, newValue);
+      });
+      parent.replaceChild(newElement, input);
+    }
+    input.addEventListener('blur', save);
+    input.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); input.blur(); } });
+  }
+  
+  function makeImageEditable(imgElement, currentSrc) {
+    const modal = document.createElement('div');
+    modal.className = 'image-upload-overlay';
+    modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:100000;';
+    modal.innerHTML = `
+      <div style="background:rgba(20,20,25,0.95);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.3);border-radius:24px;padding:32px;min-width:320px;text-align:center;">
+        <h3 style="color:white;margin-bottom:20px;">✏️ Edit Image URL</h3>
+        <input type="text" id="imgUrlInput" placeholder="Enter image URL..." value="${currentSrc.replace(/"/g, '&quot;')}" style="background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.3);border-radius:12px;padding:12px;color:white;width:100%;margin-bottom:16px;">
+        <br>
+        <button id="applyImgBtn" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:40px;padding:8px 20px;color:white;cursor:pointer;margin:0 8px;">Apply</button>
+        <button id="cancelImgBtn" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:40px;padding:8px 20px;color:white;cursor:pointer;margin:0 8px;">Cancel</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    const urlInput = modal.querySelector('#imgUrlInput');
+    modal.querySelector('#applyImgBtn').addEventListener('click', () => {
+      if (urlInput.value.trim()) imgElement.src = urlInput.value.trim();
+      modal.remove();
     });
-    
-    // initial guide positions after load
-    window.addEventListener('load', () => {
-      setTimeout(updateGuidePositions, 120);
+    modal.querySelector('#cancelImgBtn').addEventListener('click', () => modal.remove());
+  }
+  
+  function makeLogoEditable(logoContainer) {
+    const modal = document.createElement('div');
+    modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:100000;';
+    modal.innerHTML = `
+      <div style="background:rgba(20,20,25,0.95);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.3);border-radius:24px;padding:32px;min-width:320px;text-align:center;">
+        <h3 style="color:white;margin-bottom:20px;">🎨 Edit Logo</h3>
+        <input type="text" id="logoUrlInput" placeholder="Image URL (PNG/SVG)" style="background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.3);border-radius:12px;padding:12px;color:white;width:100%;margin-bottom:16px;">
+        <br>
+        <button id="applyLogoBtn" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:40px;padding:8px 20px;color:white;cursor:pointer;margin:0 8px;">Apply</button>
+        <button id="cancelLogoBtn" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:40px;padding:8px 20px;color:white;cursor:pointer;margin:0 8px;">Cancel</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    const urlInput = modal.querySelector('#logoUrlInput');
+    modal.querySelector('#applyLogoBtn').addEventListener('click', () => {
+      if (urlInput.value.trim()) {
+        const img = document.createElement('img');
+        img.src = urlInput.value.trim();
+        img.style.width = '44px';
+        img.style.height = '44px';
+        logoContainer.innerHTML = '';
+        logoContainer.appendChild(img);
+      }
+      modal.remove();
     });
-    
-    // also update after any potential image loads
-    setTimeout(updateGuidePositions, 200);
-    
-    // Ensure that capture mode fully disables pointer events, cursor reset.
-    // by default we also guarantee no layout shift.
-    console.log('Editorial Studio — Class-based overlay active | Capture Mode stable');
-  })();
+    modal.querySelector('#cancelLogoBtn').addEventListener('click', () => modal.remove());
+  }
+  
+  // ========== EDITOR & CAPTURE MODE ==========
+  let isExporting = false, editorActive = true;
+  const bodyEl = document.body;
+  const exportBtn = document.getElementById('exportCaptureBtn');
+  const closeEditorBtn = document.getElementById('closeEditorBtn');
+  const layersToolBtn = document.getElementById('layersToolBtn');
+  
+  if (layersToolBtn) layersToolBtn.addEventListener('click', () => openLayersModal());
+  
+  function removeReactiveButton() { document.querySelector('.reactive-edit-btn')?.remove(); }
+  function createReactiveButton() {
+    if (document.querySelector('.reactive-edit-btn')) return;
+    const btn = document.createElement('div');
+    btn.className = 'reactive-edit-btn';
+    btn.textContent = '✎ Edit Mode';
+    btn.onclick = () => { bodyEl.classList.remove('editor-hidden'); editorActive = true; removeReactiveButton(); updateGuidePositions(); };
+    document.body.appendChild(btn);
+  }
+  function hideEditorUI() { if (!editorActive) return; bodyEl.classList.add('editor-hidden'); editorActive = false; createReactiveButton(); }
+  if (closeEditorBtn) closeEditorBtn.onclick = (e) => { e.preventDefault(); hideEditorUI(); };
+  
+  function updateGuidePositions() {
+    const leftArea = document.querySelector('.left');
+    const desktopWrap = document.querySelector('.desktopWrap');
+    const phoneDiv = document.querySelector('.phone');
+    const g1 = document.getElementById('guide1'), g2 = document.getElementById('guide2'), g3 = document.getElementById('guide3');
+    if (leftArea && g1) { const r = leftArea.getBoundingClientRect(); g1.style.cssText = `top:${r.top}px;left:${r.left}px;width:${r.width}px;height:${Math.min(r.height,420)}px;`; }
+    if (desktopWrap && g2) { const r = desktopWrap.getBoundingClientRect(); g2.style.cssText = `top:${r.top}px;left:${r.left}px;width:${r.width}px;height:${r.height}px;`; }
+    if (phoneDiv && g3) { const r = phoneDiv.getBoundingClientRect(); g3.style.cssText = `top:${r.top}px;left:${r.left}px;width:${r.width}px;height:${r.height}px;`; }
+  }
+  
+  async function loadHtml2Canvas() {
+    if (window.html2canvas) return window.html2canvas;
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      script.onload = () => window.html2canvas ? resolve(window.html2canvas) : reject();
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+  
+  async function performExport() {
+    if (isExporting) return;
+    isExporting = true;
+    removeReactiveButton();
+    bodyEl.classList.add('capture-mode');
+    bodyEl.classList.remove('editor-hidden');
+    await new Promise(r => setTimeout(r, 200));
+    try {
+      await loadHtml2Canvas();
+      const canvas = await html2canvas(document.querySelector('.showcase'), { scale: 2.8, backgroundColor: '#050505', useCORS: true, logging: false });
+      bodyEl.classList.remove('capture-mode');
+      if (editorActive) bodyEl.classList.remove('editor-hidden');
+      else { bodyEl.classList.add('editor-hidden'); createReactiveButton(); }
+      const link = document.createElement('a');
+      link.download = `headphones_${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } catch(e) { console.error(e); bodyEl.classList.remove('capture-mode'); alert('Export failed'); }
+    finally { isExporting = false; }
+  }
+  
+  if (exportBtn) exportBtn.onclick = (e) => { e.preventDefault(); performExport(); };
+  document.querySelectorAll('.tool-item').forEach(t => t.addEventListener('click', function() { if (this.title === 'Frame') updateGuidePositions(); if (this.title === 'Export') performExport(); }));
+  window.addEventListener('resize', () => setTimeout(updateGuidePositions, 80));
+  setTimeout(updateGuidePositions, 150);
+  console.log('✨ Framer-style Layers Modal Active | Click 📁 to open');
+})();
 </script>
 </body>
 </html>
