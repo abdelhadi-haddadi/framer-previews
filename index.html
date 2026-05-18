@@ -345,18 +345,21 @@ input[type="color"]{
 }
 
 /* SIMPLE FOOTER LINKS AT BOTTOM - elegant minimal */
-.simple-footer {
-  position: absolute;
-  bottom: 24px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 100;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  pointer-events: none;
+.simple-footer{
+  position:absolute;
+  bottom:24px;
+
+  left:640px; /* حرك البداية */
+
+  z-index:999;
+
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  letter-spacing:.5px;
+
+  pointer-events:none;
 }
+  
 
 .simple-footer .footer-links {
   display: inline-flex;
